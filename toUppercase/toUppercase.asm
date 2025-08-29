@@ -32,15 +32,16 @@ Read:
     mov rsi, buff               ; variable to hold the character after reading
     mov rdx, buffLen            ; number of bytes to be read
     syscall
+    ; if return equals 0 we reached the eof (end of file)
+    mov r12, rax                ; save the number of bytes that actually read to write them only later.
+    cmp r12, 0                  ; compare rax with 0
+    jz Exit                     ; jump to exit if the return is 0
     
     mov rcx, buffLen
     mov r13, buff
     dec r13
 
 Process:
-    ; if return equals 0 we reached the eof (end of file)
-    cmp rax, 0                  ; compare rax with 0
-    jz Exit                     ; jump to exit if the return is 0
     
     ; print the char if it's not a lowercase letter
     cmp byte [r13+rcx], 61h        ; check if the char is below 'a'
@@ -60,12 +61,13 @@ Write:
     mov rax, 1                  ; 1 = code for sys_write
     mov rdi, 1                  ; 1 = fd for stdout
     mov rsi, buff               ; the character we print
-    mov rdx, buffLen            ; No. bytes to be printed
+    mov rdx, r12            ; No. bytes to be printed
     syscall
     
     ; repeat for the next character
     jmp Read
     
+    ; you where a good program. Goodbye!
 Exit:
     mov rax, 60
     mov rdi, 0
