@@ -1,0 +1,5 @@
+Steps to use this program:
+1. write this command in terminal:
+  ./toUppercase > [output file path] < [input file path]
+2. Enjoy your UPPERCASE DATA!
+
