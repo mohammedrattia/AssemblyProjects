@@ -7,6 +7,8 @@
 ;  Description     : A simple program in assembly for x64 Linux, using NASM 2.14,
 ;                    that converts the data in a file into Uppercase.
 ;
+;  Run it this way :
+;    toUppercase < [input file] > [output file]
 ;  Build using these commands:
 ;    nasm -f elf64 -g -F stabs eatsyscall.asm
 ;    ld -o eatsyscall eatsyscall.o
