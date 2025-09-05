@@ -32,8 +32,8 @@ section .bss
         Buff: resb BuffLen
 
 section .text
-global main
-main:
+global _start
+_start:
     push rbp
     mov rbp, rsp    ; for correct debugging
     
